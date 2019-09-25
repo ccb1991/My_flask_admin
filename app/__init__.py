@@ -8,6 +8,7 @@ from flask import Flask
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 
+from app.models_view import MicroBlogModelView
 from config import config
 from app.models import User,Post,db
 
@@ -19,6 +20,6 @@ def create_app(config_name):
     app.config.from_object(config[config_name])
     db.init_app(app)
     admin.init_app(app)
-    admin.add_view(ModelView(User, db.session))
+    admin.add_view(MicroBlogModelView(User, db.session))
     admin.add_view(ModelView(Post, db.session))
     return app
